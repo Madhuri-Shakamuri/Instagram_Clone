@@ -30,7 +30,7 @@ public class UserController
     public ResponseEntity<String> createUser(@RequestBody UserDto userDto)
     {
         userService.createUser(userDto);
-        return ResponseEntity.ok("User created!");
+        return ResponseEntity.ok("User created! Successfully");
     }
     
 }

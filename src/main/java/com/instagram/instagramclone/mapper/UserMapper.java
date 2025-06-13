@@ -12,7 +12,7 @@ public class UserMapper
 
     public static User toUserEntity(UserDto userDto)
     {
-        return new User(userDto.getId(),userDto.getUserName());
+        return new User(userDto.getId(),userDto.getUserName(),userDto.getPassword());
     }
     
 }
