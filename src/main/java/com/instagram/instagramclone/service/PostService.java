@@ -26,7 +26,7 @@ public class PostService
     @Autowired
     private UserRepo userRepo;
 
-    public void createPost(PostDto postDto)
+    public PostDto createPost(PostDto postDto)
     {
        User user = userRepo.findById(postDto.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + postDto.getUserId() + " not found"));
@@ -35,7 +35,7 @@ public class PostService
 
         post.setCreatedAt(LocalDateTime.now());
         Post savedPost = postRepo.save(post);
-        PostMapper.toPostDto(savedPost);
+        return PostMapper.toPostDto(savedPost);
 
     }
     

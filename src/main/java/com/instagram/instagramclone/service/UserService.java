@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.instagram.instagramclone.dto.UserDto;
 import com.instagram.instagramclone.mapper.UserMapper;
+import com.instagram.instagramclone.model.User;
 import com.instagram.instagramclone.repository.UserRepo;
 
 @Service
@@ -16,9 +17,10 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
     
-    public void createUser(UserDto userDto)
+    public UserDto createUser(UserDto userDto)
     {
-        userRepo.save(UserMapper.toUserEntity(userDto));
+        User user= userRepo.save(UserMapper.toUserEntity(userDto));
+        return UserMapper.toUserDto(user);
     }
 
     public List<UserDto> getUsers()
