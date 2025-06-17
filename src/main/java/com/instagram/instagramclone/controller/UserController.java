@@ -22,18 +22,18 @@ public class UserController
     private UserService userService;
 
 
-   @GetMapping("/")
-    public String greet(HttpServletRequest request)
-    {
-      System.out.println("Users Controller get method ");
-      return "Session Id :\n"+request.getSession().getId();
-    }
+//    @GetMapping("/")
+//     public String greet(HttpServletRequest request)
+//     {
+//       System.out.println("Users Controller get method ");
+//       return "Session Id :\n"+request.getSession().getId();
+//     }
 
-    @GetMapping("/csrf-token")
-    public CsrfToken getCsrfToken(HttpServletRequest request)
-    {
-     return (CsrfToken)request.getAttribute("_csrf");
-    }
+    // @GetMapping("/csrf-token")
+    // public CsrfToken getCsrfToken(HttpServletRequest request)
+    // {
+    //  return (CsrfToken)request.getAttribute("_csrf");
+    // }
 
     @GetMapping("/users")
     public List<UserDto> getUsers()
@@ -47,8 +47,8 @@ public class UserController
         UserDto new_user= userService.createUser(userDto);
         ObjectMapper mapper=new ObjectMapper();
         String userjson=mapper.writeValueAsString(new_user);
-        CsrfToken csrftoken=(CsrfToken)request.getAttribute("_csrf");
-        String response="User Created Successfully\n"+userjson+"\nCsrfToken: "+csrftoken.getToken();
+       // CsrfToken csrftoken=(CsrfToken)request.getAttribute("_csrf");
+        String response="User Created Successfully\n"+userjson;//+"\nCsrfToken: "+csrftoken.getToken();
         return ResponseEntity.ok(response);
     }
 
