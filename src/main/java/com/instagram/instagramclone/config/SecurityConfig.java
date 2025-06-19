@@ -63,13 +63,13 @@ public class SecurityConfig
     
 }
 
- // @Bean 
-    // public UserDetailsService userDetailsService()
-    // {
-    //     UserDetails user1=User.withDefaultPasswordEncoder()
-    //                           .username("bannu")
-    //                           .password("b@123")S
-    //                           .roles("user")
-    //                           .build();
-    //        return new InMemoryUserDetailsManager(user1);                   
-    // }
+ /*@Bean 
+    public UserDetailsService userDetailsService()
+    {
+        UserDetails user1=User.withDefaultPasswordEncoder()
+                              .username("bannu")
+                              .password("b@123")S
+                              .roles("user")
+                              .build();
+           return new InMemoryUserDetailsManager(user1);                   
+    } */
