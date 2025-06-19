@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.instagram.instagramclone.dto.PostDto;
 import com.instagram.instagramclone.service.PostService;
 @RestController
-// @RequestMapping("/api")
 public class PostController 
 {
     
