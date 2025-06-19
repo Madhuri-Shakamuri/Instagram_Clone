@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.instagram.instagramclone.Exception.UserNotFoundException;
 import com.instagram.instagramclone.model.User;
 import com.instagram.instagramclone.model.UserPrincipal;
