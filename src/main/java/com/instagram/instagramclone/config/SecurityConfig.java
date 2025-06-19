@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity // disabling spring default security - login 
+@EnableWebSecurity                                                                     // disabling spring default security - login 
 public class SecurityConfig 
 {
 
@@ -32,15 +32,15 @@ public class SecurityConfig
         http
             .csrf(customizer ->customizer.disable())                                  //diableing csrf for every request
             .authorizeHttpRequests(request -> request
-            .requestMatchers( "/user","/login")
+            .requestMatchers( "/user")
             .permitAll()
-            .anyRequest().authenticated())    // enable authentication for every request  auth -> auth.requestMatchers("/user").permitAll()
-            //http.formLogin(Customizer.withDefaults());                             //  enabling the password and username enable and give response as form
-            .httpBasic(Customizer.withDefaults())                                    //  instead of form we get the response in postman
+            .anyRequest().authenticated())                                            // enable authentication for every request  auth -> auth.requestMatchers("/user").permitAll()
+            //http.formLogin(Customizer.withDefaults());                              //  enabling the password and username enable and give response as form
+            .httpBasic(Customizer.withDefaults())                                     //  instead of form we get the response in postman
             .sessionManagement(session ->
-                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // customized session id 
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   // customized session id 
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();                                                                // returns the object of SFC
+            .build();                                                                 // returns the object of SFC
     }
 
    
@@ -48,7 +48,7 @@ public class SecurityConfig
     @Bean
     public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
     DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService); 
-    provider.setPasswordEncoder(new BCryptPasswordEncoder(12));  //validating the bcyprt password by original password hashcode
+    provider.setPasswordEncoder(new BCryptPasswordEncoder(12));              //validating the bcyprt password by original password hashcode
     return provider;
    }
 

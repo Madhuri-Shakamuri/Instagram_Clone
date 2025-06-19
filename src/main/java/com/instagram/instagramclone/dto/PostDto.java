@@ -2,12 +2,16 @@ package com.instagram.instagramclone.dto;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 public class PostDto 
 {
 
     private int id;
     private String content;
     private LocalDateTime createdAt;
+    @JsonProperty(access = Access.READ_ONLY)
     private int userId;
     private String userName;
 

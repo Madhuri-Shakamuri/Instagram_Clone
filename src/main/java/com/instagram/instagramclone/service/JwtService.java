@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.Jwts.SIG;
+
 import static io.jsonwebtoken.Jwts.SIG;
 import io.jsonwebtoken.security.Keys;
 
@@ -20,15 +22,15 @@ public class JwtService {
 
 
 
-    public String generateToken(String username) {
+    public String generateToken(int userId) {
         Map<String, Object> claims = new HashMap<>();
 
         return Jwts.builder()
                 .claims()
                 .add(claims)
-                .subject(username)
+                .subject(String.valueOf(userId))
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30)) 
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 *2)) 
                 .and()
                 .signWith(getKey(),SIG.HS384) 
                 .compact();
@@ -39,8 +41,8 @@ public class JwtService {
 
     }
 
-    public String extractUserName(String token) {
-        return extractClaim(token, Claims::getSubject);
+     public int extractUserId(String token) {
+        return Integer.parseInt(extractClaim(token, Claims::getSubject));
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
@@ -57,8 +59,8 @@ public class JwtService {
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
-        final String userName = extractUserName(token);
-        return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    final int userId = extractUserId(token);        
+    return (String.valueOf(userId).equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private boolean isTokenExpired(String token) {

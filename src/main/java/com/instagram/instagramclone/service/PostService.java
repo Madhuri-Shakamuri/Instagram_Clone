@@ -26,10 +26,10 @@ public class PostService
     @Autowired
     private UserRepo userRepo;
 
-    public PostDto createPost(PostDto postDto)
+    public PostDto createPost(PostDto postDto,int userId)
     {
-       User user = userRepo.findById(postDto.getUserId())
-                .orElseThrow(() -> new UserNotFoundException("User with ID " + postDto.getUserId() + " not found"));
+       User user = userRepo.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User with ID " + userId+ " not found"));
 
         Post post = PostMapper.toPostEntity(postDto, user);
 

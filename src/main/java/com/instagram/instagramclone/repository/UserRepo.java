@@ -11,5 +11,5 @@ import com.instagram.instagramclone.model.User;
 public interface UserRepo extends JpaRepository<User,Integer>{
 
 
-    User findByUserName(String userName);
+User findByUserName(String userName);
 }

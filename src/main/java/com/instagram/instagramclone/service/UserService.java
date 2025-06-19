@@ -48,7 +48,8 @@ public class UserService {
 
       if(authentication.isAuthenticated())
       {
-        return jwtService.generateToken(user.getUserName());
+         User dbUser = userRepo.findByUserName(user.getUserName());
+        return jwtService.generateToken(dbUser.getId());
       }
     }
     catch(Exception e)

@@ -16,15 +16,13 @@ public class MyUserServiceDetails implements UserDetailsService{
     @Autowired
     private UserRepo userRepo;
     @Override
-     public UserDetails  loadUserByUsername(String userName) throws UsernameNotFoundException
+    public UserDetails  loadUserByUsername(String idAsString) throws UsernameNotFoundException
     {
 
-    User user=userRepo.findByUserName(userName);
+    int id=Integer.parseInt(idAsString);
 
-    if(user== null)
-    {
-        throw new UserNotFoundException("User Not Found");
-    }
+     User user=userRepo.findById(id).orElseThrow(()-> new UserNotFoundException("User Not Found"));
+
     
      return  new UserPrincipal(user);
     }
