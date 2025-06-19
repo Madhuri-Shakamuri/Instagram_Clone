@@ -16,7 +16,6 @@ import com.instagram.instagramclone.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-// @RequestMapping("/api")
 public class UserController 
 {
     @Autowired
@@ -24,20 +23,6 @@ public class UserController
 
     @Autowired
     private JwtService jwtService;
-
-
-//    @GetMapping("/")
-//     public String greet(HttpServletRequest request)
-//     {
-//       System.out.println("Users Controller get method ");
-//       return "Session Id :\n"+request.getSession().getId();
-//     }
-
-    // @GetMapping("/csrf-token")
-    // public CsrfToken getCsrfToken(HttpServletRequest request)
-    // {
-    //  return (CsrfToken)request.getAttribute("_csrf");
-    // }
 
     @GetMapping("/users")
     public List<UserDto> getUsers()
@@ -61,15 +46,27 @@ public class UserController
                           +userjson
                           +"\nToken: "+generatedToken;//+"\nCsrfToken: "+csrftoken.getToken();
         return ResponseEntity.ok(response);
-    }
-    //  @PostMapping("/login")
-    // public String login(@RequestBody User user)
-    // {
-        
-    //     return  userService.verify(user);
-    // }
-    
-
-    
+    }    
     
 }
+
+
+/*   @GetMapping("/")
+    public String greet(HttpServletRequest request)
+    {
+      System.out.println("Users Controller get method ");
+       return "Session Id :\n"+request.getSession().getId();
+    }
+
+    @GetMapping("/csrf-token")
+     public CsrfToken getCsrfToken(HttpServletRequest request)
+    {
+     return (CsrfToken)request.getAttribute("_csrf");
+    }
+
+ @PostMapping("/login")
+    public String login(@RequestBody User user)
+    {
+        
+        return  userService.verify(user);
+    } */
