@@ -21,7 +21,8 @@ public class MyUserServiceDetails implements UserDetailsService{
 
     int id=Integer.parseInt(idAsString);
 
-     User user=userRepo.findById(id).orElseThrow(()-> new UserNotFoundException("User Not Found"));
+     User user=userRepo.findById(id)
+                    .orElseThrow(()-> new UserNotFoundException("User Not Found"));
 
     
      return  new UserPrincipal(user);
