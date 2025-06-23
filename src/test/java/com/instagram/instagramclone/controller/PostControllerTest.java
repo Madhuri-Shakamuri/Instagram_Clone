@@ -45,8 +45,7 @@ public class PostControllerTest {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         when(authentication.getPrincipal()).thenReturn(userPrincipal);
 
-        
-        doNothing().when(postService).createPost(postDto, 101);
+        when(postService.createPost(postDto, 101)).thenReturn(postDto);
 
         ResponseEntity<String> response = postController.createPost(postDto);
 
