@@ -29,6 +29,7 @@ public class PostController
         UserPrincipal principal = (UserPrincipal) auth.getPrincipal();
         int userId = principal.getUser().getId(); 
         postService.createPost(postDto, userId);
+        System.out.println("Post created by user with ID: " + userId);
      return ResponseEntity.ok("Post Created successfully!");
     
     }
